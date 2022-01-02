@@ -31,6 +31,7 @@ class BoolMenuItem : public MenuItem{
 
 BoolMenuItem::BoolMenuItem(String title, bool defaultValue) : MenuItem(title){
     _defaultValue = defaultValue;
+    _value = _defaultValue;
 }
 
 String BoolMenuItem::printValue(){
