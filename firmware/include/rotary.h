@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _ROTARY_H
+#define _ROTARY_H
 
 #include "Arduino.h"
 
@@ -71,3 +72,5 @@ unsigned char Rotary::process() {
   state = ttable[state & 0xf][pinstate];
   return state & 0x30;
 }
+
+#endif

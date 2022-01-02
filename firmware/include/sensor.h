@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _SENSOR_H
+#define _SENSOR_H
 
 #include "HX711.h"
 
@@ -16,7 +17,7 @@ class Sensor{
         HX711 _sensor;
         float _scaleFactor = 56.05f;
         const float PSI_IN_MOM = 133.3224;
-        int _step = 20;
+        int _step = 5;
 };
 
 
@@ -42,3 +43,5 @@ Sensor::Sensor(int data_pin, int sck_pin){
     _sensor.begin(data_pin, sck_pin, 64u);
     _sensor.set_scale(_scaleFactor);
 }
+
+#endif

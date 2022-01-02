@@ -1,10 +1,11 @@
-#pragma once
+#ifndef _MENU_H
+#define _MENU_H
 
 #include <Arduino.h>
-#include <menu_item.h>
 
 class Menu{
     public:
+        Menu(std::vector<MenuItem *> menuItems, Sensor *sensor);
         void next();
         void previous();
         void select();
@@ -13,18 +14,21 @@ class Menu{
         void reset();
         std::vector<String> getMenu();
         int index();
+        void setValue(int id, float value);
+        void setValue(int id, bool value);
+        float getFloatValue(int id);
+        void updateData();
     private:
         int selectedItem = -1;
         int item = 0;
-        std::vector<MenuItem *> items = {
-            new BoolMenuItem("item 1"),
-            new BoolMenuItem("item 2"),
-            new BoolMenuItem("item 3"),
-            new FloatMenuItem("float 1", 10.0, 1.0),
-            new FloatMenuItem("float 2", 120.0, 0.4),
-            new FloatMenuItem("float 3", 0.0, 0.1)
-        };
+        std::vector<MenuItem *> items;
+        Sensor* sensor;
 };
+
+Menu::Menu(std::vector<MenuItem *> menuItems, Sensor *sense){
+    items = menuItems;
+    sensor = sense;
+}
 
 std::vector<String> Menu::getMenu(){
     std::vector<String> menu = {};
@@ -61,11 +65,13 @@ void Menu::previous(){
 }
 
 void Menu::select(){
-    if(selectedItem == item) {
-        selectedItem = -1;
-        return;
+    if(items[item]->isSelectable){
+        if(selectedItem == item) {
+            selectedItem = -1;
+            return;
+        }
+        selectedItem = item;
     }
-    selectedItem = item;
 }
 
 void Menu::reset(){
@@ -76,3 +82,35 @@ void Menu::reset(){
     selectedItem = -1;
     item = 0;
 }
+
+void Menu::setValue(int id, float value){
+    for(int i = 0; i < items.size(); i++){
+        if(items[i]->id == id){
+            items[i]->setValue(value);
+        }
+    }
+}
+
+void Menu::setValue(int id, bool value){
+    for(int i = 0; i < items.size(); i++){
+        if(items[i]->id == id){
+            items[i]->setValue(value);
+        }
+    }
+}
+
+float Menu::getFloatValue(int id){
+    for(int i = 0; i < items.size(); i++){
+        if(items[i]->id == id){
+            return items[i]->getValueFloat();
+        }
+    }
+}
+
+void Menu::updateData(){
+    if(selectedItem == item && items[selectedItem]->id == SCALE_ITEM){
+        sensor->setScaleFactor(items[selectedItem]->getValueFloat());
+    }
+}
+
+#endif

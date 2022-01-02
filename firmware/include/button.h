@@ -1,6 +1,5 @@
-#pragma once
-
-#include <menu.h>
+#ifndef _BUTTON_H
+#define _BUTTON_H
 
 #include "OneButton.h"
 
@@ -40,3 +39,5 @@ void Button::begin(int pin, bool mode = true){
     _button.attachClick(onClick, &_button);
     _button.attachDoubleClick(onDoubleClick, &_button);
 }
+
+#endif
