@@ -27,13 +27,6 @@ class MenuItem{
         virtual float getValueFloat() = 0;
 };
 
-MenuItem::MenuItem(String title, int itemId, bool isSelectableValue){
-    name = title;
-    id = itemId;
-    isSelectable = isSelectableValue;
-}
-
-
 class BoolMenuItem : public MenuItem{
     public:
         BoolMenuItem(String title, int id, bool defaultValue = false, bool isSelectable = true);
@@ -44,43 +37,12 @@ class BoolMenuItem : public MenuItem{
         void setValue(bool value);
         void setValue(float value){};
         bool getValueBool();
-        float getValueFloat(){};
+        float getValueFloat(){return 0.0f;};
 
     private: 
         bool _value;
         bool _defaultValue;
 };
-
-BoolMenuItem::BoolMenuItem(String title, int id, bool defaultValue, bool isSelectable) : MenuItem(title, id, isSelectable){
-    _defaultValue = defaultValue;
-    _value = _defaultValue;
-}
-
-String BoolMenuItem::printValue(){
-    return _value ? "On" : "Off";
-}
-
-bool BoolMenuItem::getValueBool(){
-    return _value;
-}
-
-void BoolMenuItem::setValue(bool value){
-    _value = value;
-}
-
-void BoolMenuItem::add(){
-    if(_value) _value = false;
-    else _value = true;
-}
-
-void BoolMenuItem::remove(){
-    if(_value) _value = false;
-    else _value = true;
-}
-
-void BoolMenuItem::reset(){
-    _value = _defaultValue;
-}
 
 class FloatMenuItem : public MenuItem{
     public:
@@ -91,42 +53,12 @@ class FloatMenuItem : public MenuItem{
         void reset();
         void setValue(float value);
         void setValue(bool value){};
-        bool getValueBool(){};
+        bool getValueBool(){return false;};
         float getValueFloat();
     private: 
         float _value;
         float _defaultValue;
         float _step;
 };
-
-FloatMenuItem::FloatMenuItem(String title, int id, float defaultValue, float step, bool isSelectable) : MenuItem(title, id, isSelectable){
-    _defaultValue = defaultValue;
-    _value = _defaultValue;
-    _step = step;
-}
-
-String FloatMenuItem::printValue(){
-    return String(_value);
-}
-
-float FloatMenuItem::getValueFloat(){
-    return _value;
-}
-
-void FloatMenuItem::setValue(float value){
-    _value = value;
-}
-
-void FloatMenuItem::add(){
-    _value += _step;
-}
-
-void FloatMenuItem::remove(){
-    _value -= _step;
-}
-
-void FloatMenuItem::reset(){
-    _value = _defaultValue;
-}
 
 #endif

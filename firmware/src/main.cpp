@@ -9,7 +9,9 @@ TaskHandle_t sensorHandle;
 
 void setup() {
   Serial.begin(115200);
-
+  
+  data.begin();
+  
   //init display thread on 0 core
   vTaskDelay(pdMS_TO_TICKS(100));
   if (xTaskCreatePinnedToCore(displayThread, "display", 2048,
