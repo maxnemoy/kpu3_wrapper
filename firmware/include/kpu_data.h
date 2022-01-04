@@ -3,6 +3,7 @@
 
 #include "rotary.h"
 #include "button.h"
+#include "motor.h"
 
 #include "Wire.h"
 #include "Adafruit_GFX.h"
@@ -16,6 +17,7 @@ public:
     Sensor *sensor;
     Rotary *encoder;
     Button *button;
+    Motor *motor;
     Adafruit_SSD1306 *display;
     std::vector<MenuItem *> items;
 

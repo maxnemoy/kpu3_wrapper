@@ -9,6 +9,6 @@
     kpu.menu->setValue(PSI_VALUE_ITEM, kpu.sensor->getPsi());
     kpu.menu->setValue(MMoM_VALUE_ITEM, kpu.sensor->getMillimetersOfMercury());
 
-    vTaskDelay(pdMS_TO_TICKS(300));
+    vTaskDelay(pdMS_TO_TICKS(2));
   }
 }

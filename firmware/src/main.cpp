@@ -6,6 +6,7 @@ KpuData data = KpuData();
 TaskHandle_t displayHandle;
 TaskHandle_t inputHandle;
 TaskHandle_t sensorHandle;
+TaskHandle_t workHandle;
 
 void setup() {
   Serial.begin(115200);
@@ -14,10 +15,10 @@ void setup() {
   
   //init display thread on 0 core
   vTaskDelay(pdMS_TO_TICKS(100));
-  if (xTaskCreatePinnedToCore(displayThread, "display", 2048,
+  if (xTaskCreatePinnedToCore(displayThread, "Display", 2048,
                               (static_cast<void *>(&data)), 1,
                               &displayHandle, 0) != pdPASS){
-    Serial.println("ERROR: Encoder task dont created.");
+    Serial.println("ERROR: Display task dont created.");
     Serial.flush();
     esp_deep_sleep_start();
   }
@@ -40,6 +41,17 @@ void setup() {
                               &sensorHandle, 1) != pdPASS)
   {
     Serial.println("ERROR: Sensor task dont created.");
+    Serial.flush();
+    esp_deep_sleep_start();
+  }
+
+  //init work thread on 1 core
+  vTaskDelay(pdMS_TO_TICKS(100));
+  if (xTaskCreatePinnedToCore(workThread, "Work", 2048,
+                              (static_cast<void *>(&data)), 1,
+                              &workHandle, 1) != pdPASS)
+  {
+    Serial.println("ERROR: Work task dont created.");
     Serial.flush();
     esp_deep_sleep_start();
   }

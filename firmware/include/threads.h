@@ -9,4 +9,6 @@
 
 [[noreturn]] void sensorThread(void *kpuData);
 
+[[noreturn]] void workThread(void *kpuData);
+
 #endif

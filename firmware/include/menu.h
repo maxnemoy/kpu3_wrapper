@@ -18,8 +18,9 @@ class Menu{
         int index();
         void setValue(int id, float value);
         void setValue(int id, bool value);
-        float getFloatValue(int id);
         void updateData();
+        float getFloatValue(int id);
+        bool getBoolValue(int id);
     private:
         int selectedItem = -1;
         int item = 0;

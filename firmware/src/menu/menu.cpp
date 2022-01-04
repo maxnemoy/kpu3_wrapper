@@ -74,16 +74,26 @@ void Menu::setValue(int id, bool value){
     }
 }
 
+void Menu::updateData(){
+    if(selectedItem == item && items[selectedItem]->id == SCALE_ITEM){
+        sensor->setScaleFactor(items[selectedItem]->getValueFloat());
+    }
+}
+
+bool Menu::getBoolValue(int id){
+     for(int i = 0; i < items.size(); i++){
+        if(items[i]->id == id){
+            return items[i]->getValueBool();
+        }
+    }
+    return false;
+}
+
 float Menu::getFloatValue(int id){
     for(int i = 0; i < items.size(); i++){
         if(items[i]->id == id){
             return items[i]->getValueFloat();
         }
     }
-}
-
-void Menu::updateData(){
-    if(selectedItem == item && items[selectedItem]->id == SCALE_ITEM){
-        sensor->setScaleFactor(items[selectedItem]->getValueFloat());
-    }
+    return false;
 }

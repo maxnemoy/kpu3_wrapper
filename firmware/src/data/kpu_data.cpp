@@ -16,8 +16,8 @@ KpuData::KpuData()
     sensor = new Sensor(sensorDataPin, sensorSckPin);
     menu = new Menu(items, sensor);
     button = new Button(menu);
+    motor = new Motor(motorPin);
 }
-
 
 void KpuData::begin(){
     encoder->begin(true, false);

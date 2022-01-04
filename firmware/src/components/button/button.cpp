@@ -12,7 +12,13 @@ void onClick(void* btm){
     ((Button*)btm)->menu->select();
 }
 void onDoubleClick(void* btm){
-    ((Button*)btm)->menu->reset();
+    Button button = (*(Button*)btm);
+    if(button.menu->getBoolValue(IS_RUN_ITEM)){
+        button.menu->setValue(IS_RUN_ITEM, false);
+        //TODO: disable motor
+    } else { 
+        ((Button*)btm)->menu->reset();
+    }
 }
 void onHold(){
     Serial.println("hold");
