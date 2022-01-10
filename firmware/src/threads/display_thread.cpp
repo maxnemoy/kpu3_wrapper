@@ -32,7 +32,7 @@
       //// exit
         kpu.display->setCursor(0, 0);
         //show limit
-        if(!kpu.timer->isRun && kpu.menu->getFloatValue(CHANGES_ITEM) == 0.001){
+        if(!kpu.timer->isRun && kpu.menu->getFloatValue(CHANGES_ITEM) == 0.001f){
           if(kpu.menu->getBoolValue(IS_VACUUM_ITEM)){
             kpu.display->println(kpu.menu->getFloatValue(V_LIMIT_ITEM));
           }else{
@@ -51,6 +51,8 @@
 
         //show timer
         if (kpu.timer->isRun) {
+          kpu.display->clearDisplay();
+          kpu.display->setCursor(0, 00);
           kpu.display->println(kpu.timer->getCurrent());
           kpu.display->setCursor(0, 20);
           kpu.display->println("SECOND");

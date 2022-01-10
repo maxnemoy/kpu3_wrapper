@@ -17,6 +17,7 @@ void onDoubleClick(void* btm){
     if(button.menu->getBoolValue(IS_RUN_ITEM)){
         button.menu->setValue(IS_RUN_ITEM, false);
         button.motor->stop();
+       // button.menu->setValue(CHANGES_ITEM, 0.001f);
         button.menu->unSelect();
     } else { 
         ((Button*)btm)->menu->reset();

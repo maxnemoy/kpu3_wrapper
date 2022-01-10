@@ -40,6 +40,10 @@ void Menu::previous(){
 }
 
 void Menu::select(){
+    if(items[item]->id == IS_RUN_ITEM){
+        setValue(CHANGES_ITEM, 0.001f);
+    }
+
     if(items[item]->isSelectable){
         if(selectedItem == item) {
             selectedItem = -1;
