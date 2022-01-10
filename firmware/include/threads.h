@@ -11,4 +11,6 @@
 
 [[noreturn]] void workThread(void *kpuData);
 
+[[noreturn]] void timerThread(void *kpuData);
+
 #endif

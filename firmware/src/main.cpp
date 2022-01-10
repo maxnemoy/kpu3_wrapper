@@ -7,6 +7,7 @@ TaskHandle_t displayHandle;
 TaskHandle_t inputHandle;
 TaskHandle_t sensorHandle;
 TaskHandle_t workHandle;
+TaskHandle_t timerHandle;
 
 void setup() {
   Serial.begin(115200);
@@ -52,6 +53,17 @@ void setup() {
                               &workHandle, 1) != pdPASS)
   {
     Serial.println("ERROR: Work task dont created.");
+    Serial.flush();
+    esp_deep_sleep_start();
+  }
+
+  //init timer thread on 1 core
+  vTaskDelay(pdMS_TO_TICKS(100));
+  if (xTaskCreatePinnedToCore(timerThread, "Timer", 2048,
+                              (static_cast<void *>(&data)), 1,
+                              &timerHandle, 1) != pdPASS)
+  {
+    Serial.println("ERROR: Timer task dont created.");
     Serial.flush();
     esp_deep_sleep_start();
   }

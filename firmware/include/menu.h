@@ -11,6 +11,8 @@ class Menu{
         void next();
         void previous();
         void select();
+        void unSelect();
+        //TODO: impl hold/reset button
         // void hold();
         // void release();
         void reset();

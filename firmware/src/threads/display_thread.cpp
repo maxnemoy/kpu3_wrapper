@@ -31,21 +31,42 @@
       //// 10 | 10
       //// exit
         kpu.display->setCursor(0, 0);
-        if(kpu.menu->getBoolValue(IS_VACUUM_ITEM)){
-          kpu.display->println(kpu.menu->getFloatValue(V_LIMIT_ITEM));
-        }else{
-          kpu.display->println(kpu.menu->getFloatValue(C_LIMIT_ITEM));
+        //show limit
+        if(!kpu.timer->isRun && kpu.menu->getFloatValue(CHANGES_ITEM) == 0.001){
+          if(kpu.menu->getBoolValue(IS_VACUUM_ITEM)){
+            kpu.display->println(kpu.menu->getFloatValue(V_LIMIT_ITEM));
+          }else{
+            kpu.display->println(kpu.menu->getFloatValue(C_LIMIT_ITEM));
+          }
+          kpu.display->setCursor(0, 20);
+          kpu.display->println("LIMIT");
+        } else {
+          kpu.display->println(kpu.menu->getFloatValue(CHANGES_ITEM));
+          kpu.display->setCursor(0, 20);
+          kpu.display->println("diff");
         }
-        kpu.display->setCursor(0, 20);
-        kpu.display->println("LIMIT");
-        kpu.display->setCursor(40,0);
+
+        
+        
+
+        //show timer
+        if (kpu.timer->isRun) {
+          kpu.display->println(kpu.timer->getCurrent());
+          kpu.display->setCursor(0, 20);
+          kpu.display->println("SECOND");
+        }
+        
+        
+        kpu.display->setCursor(60,0);
         kpu.display->println("|");
-        kpu.display->setCursor(40,20);
+        kpu.display->setCursor(60,20);
         kpu.display->println("|");
-        kpu.display->setCursor(60, 0);
+        kpu.display->setCursor(70, 0);
         kpu.display->println(kpu.menu->getFloatValue(MMoM_VALUE_ITEM));
-        kpu.display->setCursor(60, 20);
+        kpu.display->setCursor(70, 20);
         kpu.display->println("CURRENT");
+        kpu.display->setCursor(0, 50);
+        kpu.display->println("double click to exit");
       }
       
       kpu.display->display();

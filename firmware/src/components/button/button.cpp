@@ -1,7 +1,8 @@
 #include "button.h"
 
-Button::Button(Menu *m){
+Button::Button(Menu *m,  Motor *mt){
     menu = m;
+    motor = mt;
 }
 
 void Button::tick(){
@@ -15,7 +16,8 @@ void onDoubleClick(void* btm){
     Button button = (*(Button*)btm);
     if(button.menu->getBoolValue(IS_RUN_ITEM)){
         button.menu->setValue(IS_RUN_ITEM, false);
-        //TODO: disable motor
+        button.motor->stop();
+        button.menu->unSelect();
     } else { 
         ((Button*)btm)->menu->reset();
     }

@@ -10,6 +10,9 @@ class Motor{
         void stop();
     private:
         int _pin;
+        const int _freq = 30000;
+        const int _pwmChannel = 0;
+        const int _resolution = 8;
 };
 #endif
 

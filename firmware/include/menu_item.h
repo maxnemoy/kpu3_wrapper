@@ -10,6 +10,7 @@
 #define C_LIMIT_ITEM 4
 #define V_LIMIT_ITEM 5
 #define SCALE_ITEM 6
+#define CHANGES_ITEM 7
 
 class MenuItem{
     public:

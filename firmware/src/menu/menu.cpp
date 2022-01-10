@@ -49,6 +49,10 @@ void Menu::select(){
     }
 }
 
+void Menu::unSelect(){
+    selectedItem = -1;
+}
+
 void Menu::reset(){
     if(selectedItem == item){
         items[selectedItem]->reset();

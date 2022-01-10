@@ -4,6 +4,7 @@
 #include "rotary.h"
 #include "button.h"
 #include "motor.h"
+#include "timer.h"
 
 #include "Wire.h"
 #include "Adafruit_GFX.h"
@@ -18,9 +19,10 @@ public:
     Rotary *encoder;
     Button *button;
     Motor *motor;
+    Timer *timer;
     Adafruit_SSD1306 *display;
     std::vector<MenuItem *> items;
-
+    bool isWork;
     void begin();
 private:
     int motorPin = 14;
