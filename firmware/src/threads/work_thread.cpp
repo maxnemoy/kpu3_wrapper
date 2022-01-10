@@ -32,7 +32,11 @@
       
       //run timer 
       if(!kpu.timer->isRun && difference == 0.001f){
-        
+        if(isVacuumMode){
+          kpu.menu->setValue(V_LIMIT_ITEM, currentMm);
+        } else {
+          kpu.menu->setValue(C_LIMIT_ITEM, currentMm);
+        }
         kpu.timer->start();
       }
     }
