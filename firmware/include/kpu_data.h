@@ -20,6 +20,7 @@ public:
     Button *button;
     Motor *motor;
     Timer *timer;
+    Boozer *boozer;
     Adafruit_SSD1306 *display;
     std::vector<MenuItem *> items;
     bool isWork;

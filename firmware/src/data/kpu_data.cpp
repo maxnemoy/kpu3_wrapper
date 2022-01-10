@@ -16,7 +16,8 @@ KpuData::KpuData()
         new FloatMenuItem("last diff", CHANGES_ITEM, 0.001f, 1.0, false),
     };
     sensor = new Sensor(sensorDataPin, sensorSckPin);
-    menu = new Menu(items, sensor);
+    boozer = new Boozer(32);
+    menu = new Menu(items, sensor, boozer);
     motor = new Motor(motorPin);
     button = new Button(menu, motor);
 
@@ -28,6 +29,7 @@ KpuData::KpuData()
             } else {
                 menu->setValue(CHANGES_ITEM, menu->getFloatValue(C_LIMIT_ITEM) - menu->getFloatValue(MMoM_VALUE_ITEM));
             }
+            menu->boozer->onTimerEnd();
         };
     timer = new Timer(10, menu, tick, end);
 }

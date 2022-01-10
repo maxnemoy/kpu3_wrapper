@@ -4,10 +4,11 @@
 #include <Arduino.h>
 #include "menu_item.h"
 #include "sensor.h"
+#include "boozer.h"
 
 class Menu{
     public:
-        Menu(std::vector<MenuItem *> menuItems, Sensor *sensor);
+        Menu(std::vector<MenuItem *> menuItems, Sensor *sensor, Boozer *boozer);
         void next();
         void previous();
         void select();
@@ -23,11 +24,13 @@ class Menu{
         void updateData();
         float getFloatValue(int id);
         bool getBoolValue(int id);
+        Boozer* boozer;
     private:
         int selectedItem = -1;
         int item = 0;
         std::vector<MenuItem *> items;
         Sensor* sensor;
+
 };
 
 #endif

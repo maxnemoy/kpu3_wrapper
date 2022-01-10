@@ -1,8 +1,9 @@
 #include "menu.h"
 
-Menu::Menu(std::vector<MenuItem *> menuItems, Sensor *sense){
+Menu::Menu(std::vector<MenuItem *> menuItems, Sensor *sense, Boozer *booz){
     items = menuItems;
     sensor = sense;
+    boozer = booz;
 }
 
 std::vector<String> Menu::getMenu(){
@@ -22,6 +23,7 @@ int Menu::index(){
 }
 
 void Menu::next(){
+    boozer->onMenuClick();
     if(selectedItem == item){
         items[selectedItem]->add();
         return;
@@ -31,6 +33,7 @@ void Menu::next(){
 }
 
 void Menu::previous(){
+    boozer->onMenuClick();
     if(selectedItem == item){
         items[selectedItem]->remove();
         return;
@@ -45,6 +48,7 @@ void Menu::select(){
     }
 
     if(items[item]->isSelectable){
+        boozer->onMenuSelect();
         if(selectedItem == item) {
             selectedItem = -1;
             return;
