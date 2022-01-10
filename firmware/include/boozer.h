@@ -5,12 +5,13 @@
 
 class Boozer {
     public:
-        Boozer(int pin);
+        Boozer(int pin, int channel = 1);
         void onMenuClick();
         void onMenuSelect();
         void onTimerEnd();
     private:
         int _pin;
+        int _channel;
         std::vector<int> _melody = std::vector<int>{NOTE_C4, NOTE_C5, NOTE_C6,};
 };
 
