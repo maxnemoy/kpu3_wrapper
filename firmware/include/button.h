@@ -1,11 +1,11 @@
 #ifndef _BUTTON_H
 #define _BUTTON_H
-
+// подключение необходимых заголовков
 #include "menu.h"
 #include "motor.h"
+// подключение внешней зависимости
 #include "OneButton.h"
-
-
+// объявление объекта
 class Button{
     private:
         OneButton _button;

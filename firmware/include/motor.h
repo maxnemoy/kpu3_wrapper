@@ -1,8 +1,8 @@
 #ifndef _MOTOR_H
 #define _MOTOR_H
-
+// подключение внешней зависимости
 #include "Arduino.h"
-
+// объявление объекта
 class Motor{
     public:
         Motor(int pin);

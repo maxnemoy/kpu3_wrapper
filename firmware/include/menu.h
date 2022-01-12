@@ -1,11 +1,12 @@
 #ifndef _MENU_H
 #define _MENU_H
-
-#include <Arduino.h>
+// подключение необходимых заголовков
 #include "menu_item.h"
 #include "sensor.h"
 #include "boozer.h"
-
+// подключение внешней зависимости
+#include <Arduino.h>
+// объявление объекта
 class Menu{
     public:
         Menu(std::vector<MenuItem *> menuItems, Sensor *sensor, Boozer *boozer);

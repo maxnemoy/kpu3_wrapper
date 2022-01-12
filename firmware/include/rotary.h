@@ -1,12 +1,13 @@
 #ifndef _ROTARY_H
 #define _ROTARY_H
-
+// подключение внешней зависимости
 #include "Arduino.h"
-
+// объявление возможных неопределенных состояний
+// инкрементного энкодера
 #define DIR_NONE 0x0
 #define DIR_CW 0x10
 #define DIR_CCW 0x20
-
+// объявление объекта
 class Rotary
 {
   public:
@@ -19,7 +20,8 @@ class Rotary
     unsigned char pin2;
     unsigned char inverter;
 };
- 
+// объявление возможных типов состояния
+// выводов S1/S2 инкрементного энкодера
 #define R_START 0x0
 #define R_CW_FINAL 0x1
 #define R_CW_BEGIN 0x2
@@ -27,7 +29,7 @@ class Rotary
 #define R_CCW_BEGIN 0x4
 #define R_CCW_FINAL 0x5
 #define R_CCW_NEXT 0x6
-
+//матрица возможных последовательностей состояний
 const unsigned char ttable[7][4] = {
   // R_START
   {R_START,    R_CW_BEGIN,  R_CCW_BEGIN, R_START},

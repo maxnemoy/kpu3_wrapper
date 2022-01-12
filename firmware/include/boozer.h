@@ -1,8 +1,8 @@
 #ifndef _BOOZER_H
 #define _BOOZER_H
-
+// подключение внешней зависимости
 #include <Tone32.h>
-
+// объявление объекта
 class Boozer {
     public:
         Boozer(int pin, int channel = 1);

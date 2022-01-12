@@ -1,8 +1,8 @@
 #ifndef _SENSOR_H
 #define _SENSOR_H
-
+// подключение внешней зависимости
 #include "HX711.h"
-
+// объявление объекта
 class Sensor{  
     public:
         Sensor(int data_pin, int sck_pin);

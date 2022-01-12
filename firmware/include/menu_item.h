@@ -1,8 +1,8 @@
 #ifndef _MENU_ITEM_H
 #define _MENU_ITEM_H
-
+// подключение внешней зависимости
 #include "Arduino.h"
-
+// определение типов элементов меню
 #define IS_RUN_ITEM 1
 #define PSI_VALUE_ITEM 1
 #define MMoM_VALUE_ITEM 2
@@ -11,7 +11,7 @@
 #define V_LIMIT_ITEM 5
 #define SCALE_ITEM 6
 #define CHANGES_ITEM 7
-
+// объявление абстрактного объекта элемента меню
 class MenuItem{
     public:
         MenuItem(String title, int id, bool isSelectable = true);
@@ -27,7 +27,8 @@ class MenuItem{
         virtual bool getValueBool() = 0;
         virtual float getValueFloat() = 0;
 };
-
+// объявление логического элемента меню,
+// являющегося наследником абстрактного класса элемент меню
 class BoolMenuItem : public MenuItem{
     public:
         BoolMenuItem(String title, int id, bool defaultValue = false, bool isSelectable = true);
@@ -44,7 +45,8 @@ class BoolMenuItem : public MenuItem{
         bool _value;
         bool _defaultValue;
 };
-
+// объявление числового элемента меню,
+// являющегося наследником абстрактного класса элемент меню
 class FloatMenuItem : public MenuItem{
     public:
         FloatMenuItem(String title, int id, float defaultValue = 1.0, float step = 0.5, bool isSelectable = true);
